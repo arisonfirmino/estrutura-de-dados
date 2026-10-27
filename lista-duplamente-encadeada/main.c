@@ -75,12 +75,14 @@ void exibe_lista_invertida(no *inicio) {
     return;
   }
 
+  // percorre até o último nó
   while (aux->prox != NULL) {
     aux = aux->prox;
   }
 
   printf("NULL <=> ");
 
+  // percorre de trás pra frente usando o ponteiro ant
   while (aux != NULL) {
     printf("%d <=> ", aux->info);
     aux = aux->ant;
@@ -102,10 +104,13 @@ no* insere_fim(no *inicio, int valor) {
   novo->prox = NULL;
   novo->ant = NULL;
 
+  // se a lista estiver vazia
   if (inicio == NULL) {
+    novo->ant = NULL;
     return novo;
   }
 
+  // percorre até o último nó
   while (aux->prox != NULL) {
     aux = aux->prox;
   }
@@ -125,11 +130,13 @@ no* remove_fim(no *inicio) {
     return NULL;
   }
 
+  // caso haja apenas um elemento na lista
   if (inicio->prox == NULL) {
     free(inicio);
     return NULL;
   }
 
+  // percorre até o último nó
   while (aux->prox != NULL) {
     aux = aux->prox;
   }
@@ -178,10 +185,8 @@ no* libera_lista(no *inicio) {
 int main() {
   setlocale(LC_ALL, "Portuguese");
 
-  no *inicio;
+  no *inicio = inicializa();
 	int valor, opcao;
-
-	inicio = inicializa();
 
   do {
     printf("====== MENU DA LISTA DUPLAMENTE ENCADEADA ======\n");
